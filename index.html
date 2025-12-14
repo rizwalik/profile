@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>R. Rizwan Ali | Full Stack .NET Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="R. Rizwan Ali – Full Stack .NET Developer building scalable enterprise solutions." />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root{
+      --primary:#6366f1;
+      --secondary:#8b5cf6;
+      --dark:#0f172a;
+      --muted:#475569;
+      --light:#f8fafc;
+      --card:#ffffff;
+      --accent:#06b6d4;
+      --ring: rgba(99,102,241,.25);
+      --shadow: 0 12px 40px rgba(0,0,0,0.10);
+
+      /* Contrast tokens (for dark background sections) */
+      --text-on-dark: #ffffff;
+      --text-on-dark-muted: rgba(255,255,255,0.88);
+      --text-on-dark-soft: rgba(255,255,255,0.78);
+
+      /* Contrast tokens (inside light cards) */
+      --text-on-card: #0f172a;
+      --text-on-card-muted: #334155;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      line-height:1.65;
+      color:var(--text-on-dark);
+      background: var(--light);
+      overflow-x:hidden;
+    }
+
+    /* Background */
+    .bg-animation{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(99,102,241,.35), transparent 55%),
+                  radial-gradient(900px 500px at 80% 30%, rgba(6,182,212,.25), transparent 55%),
+                  linear-gradient(135deg, #0b1020 0%, #111a34 35%, #0f172a 100%);
+    }
+    .noise{
+      position:fixed; inset:0; z-index:-1;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      opacity:.35;
+      pointer-events:none;
+      mix-blend-mode:overlay;
+    }
+
+    /* Layout */
+    .container{ max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    section{ padding: 90px 0; }
+
+    /* GLOBAL CONTRAST FIX (headings + descriptions) */
+    h1, h2 { color: var(--text-on-dark); }
+    .section-lead{ color: var(--text-on-dark-muted); }
+    /* Any paragraph text directly on dark background */
+    section > .container > p,
+    section > .container > .muted,
+    .muted { color: var(--text-on-dark-soft); }
+
+    h2{
+      font-size: clamp(1.8rem, 2.6vw, 2.2rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      border-left: 5px solid rgba(255,255,255,0.22);  /* was dark border; now visible */
+      padding-left: 15px;
+    }
+
+    .section-lead{
+      max-width: 820px;
+      margin-bottom: 34px;
+      font-size: 1.05rem;
+    }
+
+    /* Top nav */
+    nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(15,23,42,0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    nav .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+    }
+    .brand{
+      color:#fff;
+      font-weight:800;
+      letter-spacing: .08em;
+      font-size: .95rem;
+      text-transform: uppercase;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .brand .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg,var(--accent),var(--primary));
+      box-shadow: 0 0 0 6px rgba(6,182,212,.10);
+    }
+    nav ul{ list-style:none; display:flex; gap: 22px; }
+    nav a{
+      color: rgba(255,255,255,0.88);
+      text-decoration:none;
+      font-weight:700;
+      font-size:.95rem;
+      padding:10px 12px;
+      border-radius:10px;
+      transition: all .2s ease;
+    }
+    nav a:hover{ background: rgba(255,255,255,0.08); color:#fff; }
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      color:#fff; text-decoration:none;
+      padding:10px 14px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size:.92rem;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      background: rgba(255,255,255,0.04);
+    }
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); }
+
+    /* Hero */
+    .hero{
+      min-height: calc(100vh - 60px);
+      display:grid;
+      place-items:center;
+      padding: 70px 0 40px;
+      color:#fff;
+      text-align:center;
+    }
+    .hero h1{
+      font-size: clamp(2.6rem, 6.8vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-shadow: 0 12px 40px rgba(0,0,0,.35);
+      margin-bottom: 10px;
+      border-left: 0;
+      padding-left: 0;
+    }
+    .tagline{
+      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+      font-weight: 800;
+      opacity: .96;
+      margin-bottom: 14px;
+    }
+    .subtitle{
+      max-width: 900px;
+      margin: 0 auto 26px;
+      color: var(--text-on-dark-muted);
+      font-size: 1.08rem;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.16);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      color:#fff;
+      background: rgba(255,255,255,0.06);
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.20); }
+    .btn-primary{
+      background: #ffffff;
+      color: var(--dark);
+      border-color: rgba(255,255,255,0.8);
+    }
+    .btn-primary:hover{ background:#f6f7ff; }
+    .hero-social{
+      margin-top: 26px;
+      display:flex;
+      justify-content:center;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .icon-link{
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      color:#fff;
+      text-decoration:none;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .icon-link:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+
+    /* Cards / grids */
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 44px;
+      align-items:start;
+    }
+    .card{
+      background: rgba(255,255,255,0.94);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text-on-card);
+    }
+    .card-pad{ padding: 28px; }
+
+    /* Card text: force readable dark text (does NOT affect dark background sections) */
+    .card h3{ color: var(--text-on-card); }
+    .card p{ color: var(--text-on-card-muted); }
+    .card .muted{ color: var(--text-on-card-muted); }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .stat{
+      background: linear-gradient(135deg, rgba(99,102,241,.95), rgba(139,92,246,.95));
+      color:#fff;
+      padding: 18px;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px var(--ring);
+      text-align:left;
+    }
+    .stat .n{
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing:-0.02em;
+      display:block;
+      line-height: 1.1;
+    }
+    .stat .l{
+      opacity:.98;
+      font-weight: 800;
+      font-size: .95rem;
+    }
+
+    /* Skills */
+    .skills-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .skill{
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+      transition: transform .2s ease, border-color .2s ease;
+      color: var(--text-on-card);
+    }
+    .skill:hover{ transform: translateY(-4px); border-color: rgba(99,102,241,.35); }
+    .skill h3{
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color: var(--text-on-card);
+    }
+    .skill ul{ list-style:none; }
+    .skill li{
+      padding: 8px 0 8px 22px;
+      position: relative;
+      color: var(--text-on-card-muted);
+      font-weight: 700;
+      font-size: .98rem;
+    }
+    .skill li::before{
+      content:'▸';
+      position:absolute;
+      left:0; top:8px;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    /* Projects */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .project{
+      border-radius: 20px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 34px rgba(0,0,0,0.12);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project:hover{ transform: translateY(-6px); box-shadow: 0 18px 45px rgba(0,0,0,0.16); }
+    .project-top{
+      padding: 22px;
+      color:#fff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display:flex;
+      align-items:flex-start;
+      gap: 14px;
+    }
+    .p-ico{
+      width: 44px; height:44px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.22);
+      flex: 0 0 auto;
+    }
+    .project-top h3{
+      font-size: 1.1rem;
+      margin-top: 2px;
+      letter-spacing:-0.01em;
+      color:#fff;
+    }
+    .project-body{ padding: 22px; }
+    .project-body p{
+      color: var(--text-on-card-muted);
+      margin-bottom: 14px;
+      font-weight: 650;
+    }
+    .badges{
+      display:flex; flex-wrap:wrap; gap: 10px;
+    }
+    .badge{
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .85rem;
+      color: var(--primary);
+      background: rgba(99,102,241,0.10);
+      border: 1px solid rgba(99,102,241,0.20);
+    }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .contact{
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+      text-align:left;
+      color: var(--text-on-card);
+    }
+    .contact h3{ font-size: 1.05rem; margin-bottom: 6px; color: var(--text-on-card); }
+    .contact a{ color: var(--primary); font-weight: 900; text-decoration:none; }
+    .contact p{ color: var(--text-on-card-muted); font-weight: 750; }
+
+    /* Footer */
+    footer{
+      padding: 34px 0;
+      color: rgba(255,255,255,0.84);
+      text-align:center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15,23,42,0.55);
+      backdrop-filter: blur(10px);
+    }
+    footer .mini{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap:wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .grid-2{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-animation"></div>
+  <div class="noise"></div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <h1>R. Rizwan Ali</h1>
+      <div class="tagline">Full Stack .NET Developer</div>
+      <p class="subtitle">
+        Building scalable, secure, and mission-critical solutions across Banking, Oil &amp; Gas, and Education.
+        5+ years delivering enterprise applications with strong focus on performance, reliability, and integration.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-briefcase"></i> View Projects</a>
+        <a class="btn" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+      </div>
+
+      <div class="hero-social" aria-label="Social links">
+        <a class="icon-link" href="mailto:rzeerana@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a class="icon-link" href="https://linkedin.com/in/rizwalik" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a class="icon-link" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-wrap">
+      <div class="brand"><span class="dot"></span> R. Rizwan Ali</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="pill" href="#projects"><i class="fa-solid fa-layer-group"></i> Portfolio</a>
+        <a class="pill" href="#contact"><i class="fa-solid fa-comment-dots"></i> Hire / Collaborate</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p class="section-lead">
+        Full Stack .NET Developer with 5+ years of experience designing and delivering secure, scalable web applications and APIs.
+        Strong in end-to-end delivery with a focus on reliability, clean architecture, and measurable business outcomes.
+      </p>
+
+      <div class="grid-2">
+        <div class="card card-pad">
+          <h3 style="font-size:1.15rem; margin-bottom:10px;">What I deliver</h3>
+          <p style="font-weight:650;">
+            I design and ship production-ready enterprise systems using Microsoft technologies.
+            My work spans backend services, integrations, performance optimisation, and cloud delivery—especially within regulated environments
+            where security and stability are critical.
+          </p>
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <span class="badge">Enterprise Web Apps</span>
+            <span class="badge">API & Integrations</span>
+            <span class="badge">Performance Optimisation</span>
+            <span class="badge">Azure Delivery</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="n">5+</span>
+            <span class="l">Years Experience</span>
+          </div>
+          <div class="stat">
+            <span class="n">45%</span>
+            <span class="l">Performance Gain</span>
+          </div>
+          <div class="stat">
+            <span class="n">1000+</span>
+            <span class="l">Branches Deployed</span>
+          </div>
+          <div class="stat">
+            <span class="n">99.9%</span>
+            <span class="l">System Uptime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2>Technical Skills</h2>
+      <p class="section-lead">
+        Core technologies and platforms used to deliver enterprise-grade solutions.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill">
+          <h3><i class="fa-solid fa-code"></i> Backend</h3>
+          <ul>
+            <li>C# &amp; .NET Core</li>
+            <li>ASP.NET MVC</li>
+            <li>Entity Framework</li>
+            <li>Web API &amp; Microservices</li>
+            <li>RESTful &amp; SOAP</li>
+          </ul>
+        </div>
+
+        <div class="skill">
+          <h3><i class="fa-solid fa-laptop-code"></i> Frontend</h3>
+          <ul>
+            <li>React &amp; Angular</li>
+            <li>TypeScript &amp; JavaScript</li>
+            <li>HTML5 &amp; CSS3</li>
+            <li>Bootstrap &amp; Blazor</li>
+            <li>Responsive Design</li>
+          </ul>
+        </div>
+
+        <div class="skill">
+          <h3><i class="fa-solid fa-cloud"></i> Cloud &amp; DevOps</h3>
+          <ul>
+            <li>Microsoft Azure</li>
+            <li>Docker &amp; Kubernetes</li>
+            <li>CI/CD Pipelines</li>
+            <li>Azure DevOps</li>
+            <li>Git &amp; GitHub</li>
+          </ul>
+        </div>
+
+        <div class="skill">
+          <h3><i class="fa-solid fa-database"></i> Database</h3>
+          <ul>
+            <li>SQL Server &amp; PostgreSQL</li>
+            <li>MongoDB &amp; Redis</li>
+            <li>Query Optimisation</li>
+            <li>SAP &amp; ServiceNow</li>
+            <li>API Integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <p class="section-lead">
+        Enterprise and government projects delivered at scale.
+      </p>
+
+      <div class="projects-grid">
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-building-columns"></i></div>
+            <div><h3>Corporate Banking Payment Module</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Payment module for 50+ corporate clients enabling IFT, IBFT, OTC, and Bill Payments, streamlining fund disbursement by 40%.</p>
+            <div class="badges">
+              <span class="badge">C#</span><span class="badge">.NET Core</span><span class="badge">SQL Server</span><span class="badge">REST API</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-user-check"></i></div>
+            <div><h3>Digital Account Opening System</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Digital onboarding system with KYC and compliance features deployed across 1,000+ branches, reducing processing time by 50%.</p>
+            <div class="badges">
+              <span class="badge">ASP.NET MVC</span><span class="badge">Angular</span><span class="badge">Azure</span><span class="badge">NADRA API</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-users-gear"></i></div>
+            <div><h3>HRMS Platform</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Comprehensive HR system covering recruitment, payroll, benefits, and performance management, reducing manual workload by 40%.</p>
+            <div class="badges">
+              <span class="badge">ASP.NET</span><span class="badge">Entity Framework</span><span class="badge">React</span><span class="badge">SQL Server</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-diagram-project"></i></div>
+            <div><h3>Integrated Banking System</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Integrated OTC, Fund Transfer, Wallet accounts, and IBFT transactions for online/offline operations improving accuracy.</p>
+            <div class="badges">
+              <span class="badge">.NET Core</span><span class="badge">Microservices</span><span class="badge">SAP</span><span class="badge">PIBAS</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-list-check"></i></div>
+            <div><h3>SharePoint Task Management</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Task management system with automated alerts, Active Directory authentication, and job crawling, improving efficiency by 35%.</p>
+            <div class="badges">
+              <span class="badge">SharePoint</span><span class="badge">C#</span><span class="badge">Active Directory</span><span class="badge">SQL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-money-check-dollar"></i></div>
+            <div><h3>Salary Disbursement Service</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Automated payroll service integrated with PIBAS and SAP for SFTP/FTP reporting, reducing processing errors by 30%.</p>
+            <div class="badges">
+              <span class="badge">.NET Core</span><span class="badge">SAP</span><span class="badge">SFTP</span><span class="badge">SQL Server</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-shield-halved"></i></div>
+            <div><h3>PEP Middleware Service</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Compliance middleware for managing Politically Exposed Persons transactions ensuring regulatory compliance.</p>
+            <div class="badges">
+              <span class="badge">C#</span><span class="badge">Web API</span><span class="badge">SQL Server</span><span class="badge">Compliance</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-receipt"></i></div>
+            <div><h3>PLRA Fee Collection System</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Fee collection system for Punjab Land Records Authority streamlining processes and reducing time by 40%.</p>
+            <div class="badges">
+              <span class="badge">ASP.NET MVC</span><span class="badge">SQL Server</span><span class="badge">Payment Gateway</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div class="p-ico"><i class="fa-solid fa-chart-column"></i></div>
+            <div><h3>Budget &amp; Procurement System</h3></div>
+          </div>
+          <div class="project-body">
+            <p>Automated financial planning and procurement system improving efficiency and reporting accuracy by 35%.</p>
+            <div class="badges">
+              <span class="badge">ASP.NET Core</span><span class="badge">Angular</span><span class="badge">SQL Server</span><span class="badge">Power BI</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="section-lead">Open to full-time roles and enterprise contracts.</p>
+
+      <div class="contact-grid">
+        <div class="contact">
+          <h3><i class="fa-solid fa-envelope"></i> Email</h3>
+          <a href="mailto:rzeerana@gmail.com">rzeerana@gmail.com</a>
+        </div>
+
+        <div class="contact">
+          <h3><i class="fa-brands fa-linkedin"></i> LinkedIn</h3>
+          <a href="https://linkedin.com/in/rizwalik" target="_blank">linkedin.com/in/rizwalik</a>
+        </div>
+
+        <div class="contact">
+          <h3><i class="fa-solid fa-location-dot"></i> Location</h3>
+          <p>London, United Kingdom</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="font-weight:900; color:#fff;">R. Rizwan Ali</div>
+      <div style="margin-top:6px;">&copy; 2024. All rights reserved.</div>
+      <div class="mini">
+        <a class="pill" href="#top"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
+        <a class="pill" href="mailto:rzeerana@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+        <a class="pill" href="https://linkedin.com/in/rizwalik" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
