@@ -433,23 +433,25 @@
   border-bottom:none;
 }
 
-/* Company Logo */
 .company-logo {
-  width: 100px;              /* slightly larger */
-  height: 60px;              /* keeps it rectangular */
-  border-radius: 8px;        /* subtle rounding */
-  overflow: hidden;
+  width: auto;         /* no fixed width */
+  height: auto;        /* no fixed height */
+  border-radius: 0;    /* remove rounding */
+  overflow: visible;   /* remove clipping */
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #fff;
+  justify-content: flex-start; /* align naturally */
+  background: none;    /* remove background */
+  box-shadow: none;    /* remove shadow */
+  padding: 0;          /* no padding */
 }
 
 .company-logo img {
-  width: auto;
-  height: 100%;             /* fill vertical space */
+  width: auto;         /* natural width */
+  height: 50px;        /* optional: unify height for consistency */
   object-fit: contain;
 }
+
 
 /* Company info */
 .exp-company{
