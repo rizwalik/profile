@@ -432,29 +432,46 @@
 .experience-row-item:last-child{
   border-bottom:none;
 }
-
+/* Container for logo */
 .company-logo {
-  width: auto;         /* no fixed width */
-  height: auto;        /* no fixed height */
-  border-radius: 0;    /* remove rounding */
-  overflow: visible;   /* remove clipping */
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* align naturally */
-  background: none;    /* remove background */
-  box-shadow: none;    /* remove shadow */
-  padding: 0;          /* no padding */
+  justify-content: flex-start;
+  border-radius: 0;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: 100%; /* prevent overflowing parent */
 }
 
-    .agoclogo img {
-  height: 30px !important;  
- 
-}
-.company-logo img {
-  width: auto;         /* natural width */
-  height: 18px;        /* optional: unify height for consistency */
+/* Logo images */
+.company-logo img,
+.agoclogo img {
+  max-width: 100%;  /* scales down on smaller screens */
+  height: auto;     /* maintain aspect ratio */
   object-fit: contain;
+  display: block;
 }
+
+/* Optional: consistent height on larger screens */
+@media (min-width: 768px) {
+  .company-logo img,
+  .agoclogo img {
+    height: 40px; /* fixed height on tablets/desktops */
+    width: auto;  /* maintain aspect ratio */
+  }
+}
+
+/* Optional: smaller height on mobile */
+@media (max-width: 767px) {
+  .company-logo img,
+  .agoclogo img {
+    height: 30px; /* smaller logo for mobile */
+    width: auto;
+  }
+}
+
 
 
 /* Company info */
