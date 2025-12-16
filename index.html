@@ -433,24 +433,24 @@
   border-bottom:none;
 }
 
-.company-logo{
-  width:56px;
-  height:56px;
-  border-radius:14px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  color:#fff;
-  font-size:1rem;
-  box-shadow: 0 10px 26px rgba(99,102,241,.35);
+.company-logo {
+  width: 80px;             /* Slightly larger for clarity */
+  height: 80px;
+  border-radius: 12px;     /* Rounded corners optional, smaller radius looks more professional */
+  overflow: hidden;        /* Ensures logo doesn't spill outside */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  background-color: #fff;  /* Optional, good for logos with transparency */
 }
 
- .company-logo img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
+.company-logo img {
+  width: auto;
+  height: 70%;            /* Keeps logo proportional inside the container */
+  object-fit: contain;
 }
+
 
 .exp-company{
   font-weight:900;
