@@ -422,7 +422,7 @@
 
 .experience-row-item{
   display:grid;
-  grid-template-columns: 80px 2.5fr 2.5fr 2fr;
+  grid-template-columns: 100px 3fr 2.5fr 2fr; /* slightly more space for logo */
   align-items:center;
   padding: 20px 26px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
@@ -433,28 +433,31 @@
   border-bottom:none;
 }
 
+/* Company Logo */
 .company-logo {
-  width: 80px;             /* Slightly larger for clarity */
-  height: 80px;
-  border-radius: 12px;     /* Rounded corners optional, smaller radius looks more professional */
-  overflow: hidden;        /* Ensures logo doesn't spill outside */
+  width: 100px;              /* slightly larger */
+  height: 60px;              /* keeps it rectangular */
+  border-radius: 8px;        /* subtle rounding */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-  background-color: #fff;  /* Optional, good for logos with transparency */
+  background-color: #fff;
 }
 
 .company-logo img {
   width: auto;
-  height: 70%;            /* Keeps logo proportional inside the container */
+  height: 100%;             /* fill vertical space */
   object-fit: contain;
 }
 
-
+/* Company info */
 .exp-company{
   font-weight:900;
   font-size:1.05rem;
+  white-space: nowrap;      /* prevents wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .exp-role{
@@ -480,6 +483,7 @@
     grid-column: 2;
   }
 }
+
 
 
 
