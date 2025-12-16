@@ -409,6 +409,75 @@
       .grid-2{ grid-template-columns: 1fr; }
       nav ul{ display:none; }
     }
+
+/* Experience – Minimal Professional */
+.experience-list{
+  margin-top: 26px;
+  display: grid;
+  gap: 18px;
+}
+
+.experience-item{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  background: rgba(255,255,255,0.94);
+  border-radius: 18px;
+  padding: 22px 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  transition: transform .2s ease, box-shadow .2s ease;
+  color: var(--text-on-card);
+}
+
+.experience-item:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+.company-logo{
+  width:64px;
+  height:64px;
+  border-radius:16px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:900;
+  font-size:1.1rem;
+  flex-shrink:0;
+  box-shadow: 0 12px 30px rgba(99,102,241,.35);
+}
+
+.experience-details{
+  flex:1;
+}
+
+.experience-details h3{
+  font-size:1.1rem;
+  font-weight:900;
+  margin-bottom:4px;
+  color: var(--text-on-card);
+}
+
+.experience-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  font-size:.92rem;
+  font-weight:800;
+  color: var(--text-on-card-muted);
+}
+
+.experience-meta span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+
+
+    
   </style>
 </head>
 
@@ -559,6 +628,55 @@
     </div>
   </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <h2>Professional Experience</h2>
+    <p class="section-lead">
+      Enterprise software roles across banking, government, and corporate environments.
+    </p>
+
+    <div class="experience-list">
+
+      <div class="experience-item">
+        <div class="company-logo">FT</div>
+        <div class="experience-details">
+          <h3>FinTech Solutions Ltd</h3>
+          <div class="experience-meta">
+            <span><i class="fa-solid fa-briefcase"></i> Senior Software Engineer (.NET)</span>
+            <span><i class="fa-solid fa-location-dot"></i> London, UK</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="company-logo">ES</div>
+        <div class="experience-details">
+          <h3>Enterprise Systems Corp</h3>
+          <div class="experience-meta">
+            <span><i class="fa-solid fa-briefcase"></i> Full Stack .NET Developer</span>
+            <span><i class="fa-solid fa-location-dot"></i> Islamabad, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="company-logo">TN</div>
+        <div class="experience-details">
+          <h3>TechNova Solutions</h3>
+          <div class="experience-meta">
+            <span><i class="fa-solid fa-briefcase"></i> Software Developer</span>
+            <span><i class="fa-solid fa-location-dot"></i> Lahore, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
@@ -576,7 +694,7 @@
           <div class="project-body">
             <p>Payment module for 50+ corporate clients enabling IFT, IBFT, OTC, and Bill Payments, streamlining fund disbursement by 40%.</p>
             <div class="badges">
-              <span class="badge">C#</span><span class="badge">.NET Core</span><span class="badge">Oracel Database</span><span class="badge">RESTful API's</span>
+              <span class="badge">C#</span><span class="badge">.NET Core</span><span class="badge">Oracle Database</span><span class="badge">RESTful API's</span>
             </div>
           </div>
         </article>
